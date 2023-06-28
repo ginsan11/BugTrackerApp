@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Mxb5ofqnvr+3rPqxPpwP/JezQp5WjIqYVvgPDHR8YGNntyR5XEZbBFqRySoCMLFCTCtgqGCf0xEI9yE4dEie/w==",
+  "dgSpecHash": "EhIlqHXgOjLPZV9IYw4Tnlga/WzNbqZFCjg1A5E+GpcNytoa87PM0sIX8WALN3OcQr9U2w9K9EqaROaOR40bhA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\api\\BugTracker\\BugTracker.csproj",
+  "projectFilePath": "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\BugTrackerApp\\api\\bugtracker\\BugTracker.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dummy\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\Dummy\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",

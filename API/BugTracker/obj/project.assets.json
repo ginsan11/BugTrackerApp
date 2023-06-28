@@ -88,6 +88,16 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "BugTracker.Contracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/BugTracker.Contracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BugTracker.Contracts.dll": {}
+        }
       }
     }
   },
@@ -429,10 +439,16 @@
         "swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
+    },
+    "BugTracker.Contracts/1.0.0": {
+      "type": "project",
+      "path": "../BugTracker.Contracts/BugTracker.Contracts.csproj",
+      "msbuildProject": "../BugTracker.Contracts/BugTracker.Contracts.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "BugTracker.Contracts >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.5.0"
     ]
   },
@@ -442,11 +458,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\api\\BugTracker\\BugTracker.csproj",
+      "projectUniqueName": "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\BugTrackerApp\\api\\BugTracker\\BugTracker.csproj",
       "projectName": "BugTracker",
-      "projectPath": "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\api\\BugTracker\\BugTracker.csproj",
+      "projectPath": "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\BugTrackerApp\\api\\BugTracker\\BugTracker.csproj",
       "packagesPath": "C:\\Users\\Dummy\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\api\\BugTracker\\obj\\",
+      "outputPath": "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\BugTrackerApp\\api\\BugTracker\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Dummy\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -460,7 +476,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\BugTrackerApp\\api\\BugTracker.Contracts\\BugTracker.Contracts.csproj": {
+              "projectPath": "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\BugTrackerApp\\api\\BugTracker.Contracts\\BugTracker.Contracts.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

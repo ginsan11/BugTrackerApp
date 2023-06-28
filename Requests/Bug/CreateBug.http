@@ -1,0 +1,16 @@
+POST http://localhost:5157/bug
+Content-Type: application/json
+
+{
+    "name": "Not aligning properly",
+    "description": "Image is going all crazy",
+    "Creator": "Me",
+    "Collaborators": [
+        "Jonathan",
+        "Ali",
+        "Person",
+        "Salad"
+    ],
+    "startDateTime": "2022-04-08T08:00:00",
+    "endDateTime": "2022-04-08T11:00:00"
+} 
