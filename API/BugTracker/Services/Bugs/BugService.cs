@@ -1,6 +1,6 @@
-using BugTracker.Service.IBugService;
+using BugTracker.Models;
 
-namespace BugTracker.Services.Bug;
+namespace BugTracker.Services.Bugs;
 
 public class BugService : IBugService{
 
@@ -12,6 +12,6 @@ public class BugService : IBugService{
     }
 
     public Bug GetBug(Guid id){
-        return _breakfast[id];
+        return _bug[id];
     }
 }

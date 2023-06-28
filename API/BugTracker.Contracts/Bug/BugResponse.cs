@@ -1,4 +1,4 @@
-namespace BugTracker.Contracts.Bugs;
+namespace BugTracker.Contracts.Bug;
 
 public record BugResponse(
     Guid Id,

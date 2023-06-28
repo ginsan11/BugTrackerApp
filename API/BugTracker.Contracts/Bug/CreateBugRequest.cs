@@ -1,6 +1,7 @@
-namespace BugTracker.Contracts.Bugs;
+namespace BugTracker.Contracts.Bug;
 
-public record UpsertBugRequest(
+
+public record CreateBugRequest(
     string Name,
     string Description,
     string Creator,

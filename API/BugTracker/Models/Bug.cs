@@ -1,4 +1,4 @@
-namespace Bug.Models;
+namespace BugTracker.Models;
 
 public class Bug{
     public Guid Id { get; }

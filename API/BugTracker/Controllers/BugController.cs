@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using BugTracker.Contracts.Bugs;
+using BugTracker.Contracts.Bug;
+using BugTracker.Services.Bugs;
+using BugTracker.Models;
+
 
 namespace BugTracker.Contracts.Controllers;
 
