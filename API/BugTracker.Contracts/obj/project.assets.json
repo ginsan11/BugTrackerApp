@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "/Users/h.m/.nuget/packages/": {}
+    "C:\\Users\\Dummy\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/h.m/Documents/GitHub/BugTrackerApp/API/BugTracker.Contracts/BugTracker.Contracts.csproj",
+      "projectUniqueName": "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\BugTrackerApp\\API\\BugTracker.Contracts\\BugTracker.Contracts.csproj",
       "projectName": "BugTracker.Contracts",
-      "projectPath": "/Users/h.m/Documents/GitHub/BugTrackerApp/API/BugTracker.Contracts/BugTracker.Contracts.csproj",
-      "packagesPath": "/Users/h.m/.nuget/packages/",
-      "outputPath": "/Users/h.m/Documents/GitHub/BugTrackerApp/API/BugTracker.Contracts/obj/",
+      "projectPath": "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\BugTrackerApp\\API\\BugTracker.Contracts\\BugTracker.Contracts.csproj",
+      "packagesPath": "C:\\Users\\Dummy\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\BugTrackerApp\\API\\BugTracker.Contracts\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/h.m/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Dummy\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -59,7 +59,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.411/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.411\\RuntimeIdentifierGraph.json"
       }
     }
   }

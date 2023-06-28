@@ -4,14 +4,24 @@ namespace BugTracker.Services.Bugs;
 
 public class BugService : IBugService{
 
-    private readonly Dictionary<Guid, Bug> _bug = new();
+    private static readonly Dictionary<Guid, Bug> bugdict = new();
 
     public void CreateBug(Bug bug){
-        _bug.Add(bug.Id, bug);
+        bugdict.Add(bug.Id, bug);
 
     }
 
     public Bug GetBug(Guid id){
-        return _bug[id];
+        return bugdict[id];
+    }
+
+    public void UpsertBug(Bug bug){
+        bugdict[bug.Id] = bug;
+
+    }
+
+    public void DeletetBug(Guid id){
+        bugdict.Remove(id);
     }
 }
+

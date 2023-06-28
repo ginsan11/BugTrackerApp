@@ -1,6 +1,4 @@
-@id=00000000-0000-0000-0000-000000000000
-
-PUT http://localhost:5157/bug/{{id}}
+POST http://localhost:5157/bug
 Content-Type: application/json
 
 {
@@ -10,9 +8,9 @@ Content-Type: application/json
     "Collaborators": [
         "Jonathan",
         "Ali",
-        "Person",
+        "star",
         "Salad"
     ],
     "startDateTime": "2022-04-08T08:00:00",
     "endDateTime": "2022-04-08T11:00:00"
-}
+} 

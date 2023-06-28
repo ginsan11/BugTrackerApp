@@ -1,16 +1,18 @@
-POST http://localhost:5157/bug
+@id=c315aa79-4265-48ce-a479-90b7431f39b6
+
+PUT http://localhost:5157/bug/{{id}}
 Content-Type: application/json
 
 {
-    "name": "Not aligning properly",
+    "name": "Not aligning properly V2",
     "description": "Image is going all crazy",
     "Creator": "Me",
     "Collaborators": [
         "Jonathan",
         "Ali",
-        "Person",
+        "Not Racist",
         "Salad"
     ],
     "startDateTime": "2022-04-08T08:00:00",
     "endDateTime": "2022-04-08T11:00:00"
-} 
+}

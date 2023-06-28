@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using BugTracker.Contracts.Bug;
 using BugTracker.Services.Bugs;
 using BugTracker.Models;
+using BugTracker.Contracts.BugContract;
 
 
 namespace BugTracker.Contracts.Controllers;
@@ -33,8 +33,8 @@ public class BugController : ControllerBase{
         // TODO: save breakfast to database
         _bugService.CreateBug(bug);
 
-        var response = new Bug (
-            bug.NewGuid(),
+        var response = new BugResponse (
+            bug.Id,
             bug.Name,
             bug.Description,
             bug.Creator,
@@ -56,7 +56,7 @@ public class BugController : ControllerBase{
         Bug bug = _bugService.GetBug(id);
 
         var response = new BugResponse(
-            bug.NewGuid(),
+            bug.Id,
             bug.Name,
             bug.Description,
             bug.Creator,
@@ -70,11 +70,29 @@ public class BugController : ControllerBase{
 
     [HttpPut("{id:guid}")]
     public IActionResult UpsertBug(Guid id, UpsertBugRequest request){
-        return Ok(request);
+            var bug = new Bug (
+
+            id,
+            request.Name,
+            request.Description,
+            request.Creator,
+            request.Collaborators,
+            request.StartDateTime,
+            request.EndDateTime,
+            DateTime.UtcNow
+        );
+
+        _bugService.UpsertBug(bug);
+
+        // TODO: Retunr 201 if a new Bug created
+
+        return NoContent();
     }
     
     [HttpDelete("{id:guid}")]
     public IActionResult DeletetBug(Guid id){
-        return Ok(id);
+
+        _bugService.DeletetBug(id);
+        return NoContent();
     }
 }

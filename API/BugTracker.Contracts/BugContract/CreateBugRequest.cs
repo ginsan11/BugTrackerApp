@@ -1,4 +1,4 @@
-namespace BugTracker.Contracts.Bug;
+namespace BugTracker.Contracts.BugContract;
 
 
 public record CreateBugRequest(
@@ -6,6 +6,6 @@ public record CreateBugRequest(
     string Description,
     string Creator,
     List<string> Collaborators,
-    DateTime CreationDateTime,
-    DateTime ClosingDateTime
+    DateTime StartDateTime,
+    DateTime EndDateTime
 );

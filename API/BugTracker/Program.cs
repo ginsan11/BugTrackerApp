@@ -1,5 +1,8 @@
+using BugTracker.Services.Bugs;
+
 var builder = WebApplication.CreateBuilder(args);{
     builder.Services.AddControllers();
+    builder.Services.AddScoped<IBugService, BugService>();
 }
 
 // Add services to the container.
@@ -10,6 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();{
+    app.UseExceptionHandler("/error");
     app.UseHttpsRedirection();
     app.UseAuthorization();
     app.MapControllers();
