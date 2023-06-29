@@ -1,14 +1,15 @@
 using BugTracker.Models;
+using ErrorOr;
 
 namespace BugTracker.Services.Bugs;
 
 public interface IBugService
 {
-    void CreateBug(Bug bug);
+    ErrorOr<Created> CreateBug(Bug bug);
 
-    Bug GetBug(Guid id);
+    ErrorOr<Bug> GetBug(Guid id);
 
-    void UpsertBug(Bug bug);
+    ErrorOr<UpsertedBug> UpsertBug(Bug bug);
     
-    void DeletetBug(Guid id);
+    ErrorOr<Deleted> DeletetBug(Guid id);
 }

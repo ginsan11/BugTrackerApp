@@ -2,8 +2,8 @@ POST http://localhost:5157/bug
 Content-Type: application/json
 
 {
-    "name": "Not aligning properly",
-    "description": "Image is going all crazy",
+    "name": "Noooooooooooooo",
+    "description": "I am a bug",
     "Creator": "Me",
     "Collaborators": [
         "Jonathan",

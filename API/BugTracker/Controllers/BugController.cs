@@ -2,13 +2,16 @@ using Microsoft.AspNetCore.Mvc;
 using BugTracker.Services.Bugs;
 using BugTracker.Models;
 using BugTracker.Contracts.BugContract;
+using ErrorOr;
+using BugTracker.ServiceErrors;
+using BugTracker.Controllers;
+
+
 
 
 namespace BugTracker.Contracts.Controllers;
 
-[ApiController]
-[Route("bug")] //"[controller]" can be used instead and uses class name minus the word controlloer 
-public class BugController : ControllerBase{
+public class BugController : ApiController{
 
     private readonly IBugService _bugService;
 
@@ -16,24 +19,8 @@ public class BugController : ControllerBase{
         _bugService = bugService;
     }
 
-    [HttpPost("")]
-    public IActionResult CreateBug(CreateBugRequest request){
-        var bug = new Bug (
-            Guid.NewGuid(),
-            request.Name,
-            request.Description,
-            request.Creator,
-            request.Collaborators,
-            request.StartDateTime,
-            request.EndDateTime,
-            DateTime.UtcNow
-        );
-
-
-        // TODO: save breakfast to database
-        _bugService.CreateBug(bug);
-
-        var response = new BugResponse (
+    private static BugResponse MapBugResponse(Bug bug){
+        return new BugResponse (
             bug.Id,
             bug.Name,
             bug.Description,
@@ -43,56 +30,73 @@ public class BugController : ControllerBase{
             bug.EndDateTime,
             bug.LastModifiedDateTime
         );
+    }
 
+    private CreatedAtActionResult CreatedAtGetBug(Bug bug){
         return CreatedAtAction(
             actionName: nameof(GetBug), 
             routeValues: new{id = bug.Id}, 
-            value: response);
+            value: MapBugResponse(bug));
+    }
+
+    [HttpPost("")]
+    public IActionResult CreateBug(CreateBugRequest request){
+        ErrorOr<Bug> requestToBugResult = Bug.From(request);
+        if (requestToBugResult.IsError){
+            return Problem(requestToBugResult.Errors);
+        }
+
+        var bug = requestToBugResult.Value;
+
+
+        // TODO: save Bug to database
+        ErrorOr<Created> createdBugResult = _bugService.CreateBug(bug);
+
+        return createdBugResult.Match(
+            createdBugResult => CreatedAtGetBug(bug),
+            errors => Problem(errors)
+        );
     }
 
     [HttpGet("{id:guid}")]
     public IActionResult GetBug(Guid id){
 
-        Bug bug = _bugService.GetBug(id);
+        ErrorOr<Bug> getBugResult = _bugService.GetBug(id);
 
-        var response = new BugResponse(
-            bug.Id,
-            bug.Name,
-            bug.Description,
-            bug.Creator,
-            bug.Collaborators,
-            bug.StartDateTime,
-            bug.EndDateTime,
-            bug.LastModifiedDateTime
-        );
-        return Ok(response);
+
+        //var bug = getBugResult.Value;
+
+        return getBugResult.Match(
+            bug => Ok(MapBugResponse(bug)), 
+            errors => Problem(errors));
     }
 
     [HttpPut("{id:guid}")]
     public IActionResult UpsertBug(Guid id, UpsertBugRequest request){
-            var bug = new Bug (
+            ErrorOr<Bug> requestToBugResult = Bug.From(id, request);
 
-            id,
-            request.Name,
-            request.Description,
-            request.Creator,
-            request.Collaborators,
-            request.StartDateTime,
-            request.EndDateTime,
-            DateTime.UtcNow
-        );
+        
+        if (requestToBugResult.IsError){
+            return Problem(requestToBugResult.Errors);
+        }
 
-        _bugService.UpsertBug(bug);
+        var bug = requestToBugResult.Value;
+        ErrorOr<UpsertedBug> upsertBugResult = _bugService.UpsertBug(bug);
 
         // TODO: Retunr 201 if a new Bug created
 
-        return NoContent();
+        return upsertBugResult.Match(
+            upserted => upserted.IsNewlyCreated ? CreatedAtGetBug(bug) : NoContent(), //was this newly created? if not NoContent
+            errors => Problem(errors));
     }
     
     [HttpDelete("{id:guid}")]
     public IActionResult DeletetBug(Guid id){
 
-        _bugService.DeletetBug(id);
-        return NoContent();
+        ErrorOr<Deleted> deleteBugResult = _bugService.DeletetBug(id);
+
+        return deleteBugResult.Match(
+            deleted => NoContent(),
+            errors => Problem(errors));
     }
 }
