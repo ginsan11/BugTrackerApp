@@ -1,9 +1,9 @@
-POST http://localhost:5157/bug
+POST http://localhost:80/bug
 Content-Type: application/json
 
 {
-    "name": "Noooooooooooooo",
-    "description": "I am a bug",
+    "name": "Ruuuuuuuuuuuuuun",
+    "description": "Teeeeeeeeeeeeeeest",
     "Creator": "Me",
     "Collaborators": [
         "Jonathan",

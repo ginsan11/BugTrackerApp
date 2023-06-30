@@ -1,3 +1,3 @@
-@id=02abaa15-dd7d-4359-840a-67a7fd254878
+@id=3ec3ddda-97ba-4385-b150-cbbd933b2c07
 //c315aa79-4265-48ce-a479-90b7431f39c939
-DELETE http://localhost:5157/bug/{{id}}
+DELETE http://localhost:80/bug/{{id}}

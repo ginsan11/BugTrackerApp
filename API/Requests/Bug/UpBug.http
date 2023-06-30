@@ -1,6 +1,6 @@
 @id=e2e45c0a-91b8-419c-ad6a-08bf4c5f83d3
 
-PUT http://localhost:5157/bug/{{id}}
+PUT http://localhost:80/bug/{{id}}
 Content-Type: application/json
 
 {

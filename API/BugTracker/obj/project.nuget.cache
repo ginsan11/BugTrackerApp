@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZVdagrMkmrOZWX4w0Z0lB9LnlyUENJ1KUrgvMO+wumFi7B6R33LB4gnjKf/7skeqgqud+DUj35brCd0GHC8g0w==",
+  "dgSpecHash": "muHaHu5CKRyxUD+6n5rNj5lXVXqOJ8Fel6ZhzIY/Tf84yglClcmMaP3CPROqH4iBZZhhAMbYJMLbo4BpU3coGw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\BugTrackerApp\\API\\bugtracker\\BugTracker.csproj",
+  "projectFilePath": "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\BugTrackerApp\\API\\BugTracker\\BugTracker.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dummy\\.nuget\\packages\\erroror\\1.2.1\\erroror.1.2.1.nupkg.sha512",
     "C:\\Users\\Dummy\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",

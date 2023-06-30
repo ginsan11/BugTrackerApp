@@ -13,6 +13,7 @@ const AllIssues = () => {
                     text="Must be 8-20 characters long."
                     aria-describedby="exampleFormControlInputHelpInline"
                 />
+                <input type="submit" value="Submit"></input>
             </CForm>
         </div>
 

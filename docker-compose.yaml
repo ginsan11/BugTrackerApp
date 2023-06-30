@@ -1,0 +1,44 @@
+version: "3.8"
+name: bug-tracker-container
+services:
+  app:
+    container_name: tracker-app
+    hostname: tracker-app
+    image: bug-tracker-app
+    build:
+      context: ./app
+      dockerfile: ./.docker/dev.Dockerfile
+    volumes:
+      - ./app:/app
+      - ./app_node_modules:/app/node_modules
+    working_dir: /APP
+    ports:
+      - 3000:3000
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+    depends_on:
+      - api
+    mem_limit: 2g # allocate 2GB of memory to the container
+
+
+  api:
+    container_name: tracker-REST-api
+    hostname: Tracker_api
+    image: bug-tracker-api
+    build:
+      context: ./api
+      dockerfile: ./BugTracker/dev.Dockerfile
+    volumes:
+      - ./api:/app
+    working_dir: /API
+    ports:
+      - 80:80 # development port
+      #- 5157:5157 # testing port
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+
+volumes:
+  app_node_modules:
+  #api_.NET_modules:
