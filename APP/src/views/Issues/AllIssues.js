@@ -1,23 +1,48 @@
-import { CForm, CFormInput, CFormLabel, CFormTextarea } from '@coreui/react'
-import React from 'react'
+import React, { useState } from 'react';
 
 const AllIssues = () => {
-    return (
-        <div>
-            <CForm>
-                <CFormInput
-                    type="ID"
-                    id="exampleFormControlInput1"
-                    label="Bug ID"
-                    placeholder="00000000-0000-0000-0000-000000000000"
-                    text="Must be 8-20 characters long."
-                    aria-describedby="exampleFormControlInputHelpInline"
-                />
-                <input type="submit" value="Submit"></input>
-            </CForm>
-        </div>
+  const [bugId, setBugId] = useState('');
 
-    )
-}
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-export default AllIssues
+    // Replace "http://localhost:80/bug/" with the appropriate API endpoint URL
+    fetch(`http://localhost:80/bug/${bugId}`)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Request failed');
+      }
+    })
+    .then((data) => {
+      // Handle the API response data here
+      console.log('API response data:');
+      console.log(data);
+    })
+    .catch((error) => {
+      // Handle any errors
+      console.error(error);
+    });
+};
+
+  const handleInputChange = (e) => {
+    setBugId(e.target.value);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label htmlFor="bugIdInput">Bug ID:</label>
+      <input
+        type="text"
+        id="bugIdInput"
+        value={bugId}
+        onChange={handleInputChange}
+        placeholder="Enter Bug ID"
+      />
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+
+export default AllIssues;
