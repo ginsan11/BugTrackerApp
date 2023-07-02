@@ -7,5 +7,8 @@ public record CreateBugRequest(
     string Creator,
     List<string> Collaborators,
     DateTime StartDateTime,
-    DateTime EndDateTime
+    DateTime EndDateTime,
+    DateTime LastModified,
+    int Status,
+    List<Guid> Linkedbugs
 );

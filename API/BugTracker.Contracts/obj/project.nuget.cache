@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wJrUZ1DdBwPxxSIJzhlPoS44gsV4DKftPAEeempw0SzYvfeyv6/xVj6JRHOoFn/7RqnpOxHbXVzTFTurbuvFAQ==",
+  "dgSpecHash": "Pj/H5UmXFbQ0GHwyzvwgVb9rexv2n4N4oi3tXg08ARmR0WU1JoBQNVIGuXjGbI0cGWUjWdh9Nxy2mXukwIxsrg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\BugTrackerApp\\API\\BugTracker.Contracts\\BugTracker.Contracts.csproj",
+  "projectFilePath": "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\BugTrackerApp\\api\\BugTracker.Contracts\\BugTracker.Contracts.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

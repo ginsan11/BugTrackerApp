@@ -1,4 +1,4 @@
-POST http://localhost:80/bug
+POST http://localhost:5157/bug
 Content-Type: application/json
 
 {
@@ -12,5 +12,8 @@ Content-Type: application/json
         "Salad"
     ],
     "startDateTime": "2022-04-08T08:00:00",
-    "endDateTime": "2022-04-08T11:00:00"
+    "endDateTime": "2022-04-08T11:00:00",
+    "status": 0,
+    "LinkedBugs": [
+    ]
 } 

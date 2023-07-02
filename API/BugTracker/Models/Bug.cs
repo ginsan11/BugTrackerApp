@@ -20,17 +20,21 @@ public class Bug{
     public List<string> Collaborators { get; }
     public DateTime StartDateTime { get; }
     public DateTime EndDateTime { get; }
-    public DateTime LastModifiedDateTime { get; }
+    public DateTime LastModified { get; }
+    public int Status { get; }
+    public List<Guid> Linkedbugs { get; }
 
     private Bug(
-        Guid id, 
+        Guid id,
         string name, 
         string description, 
         string creator, 
         List<string> collaborators, 
         DateTime startDateTime, 
         DateTime endDateTime, 
-        DateTime lastModifiedDateTime){
+        DateTime lastModified,
+        int status,
+        List<Guid> linkedbugs){
 
         Id = id;
         Name = name;
@@ -39,7 +43,9 @@ public class Bug{
         Collaborators = collaborators;
         StartDateTime = startDateTime;
         EndDateTime = endDateTime;
-        LastModifiedDateTime = lastModifiedDateTime;
+        LastModified = lastModified;
+        Status = status;
+        Linkedbugs = linkedbugs;
     }
 
     public static ErrorOr<Bug> Create(
@@ -49,6 +55,9 @@ public class Bug{
         List<string> collaborators,
         DateTime startDateTime,
         DateTime endDateTime,
+        int status,
+        List<Guid> linkedbugs,
+        DateTime ? lastModified = null,
         Guid ? id = null){
 
             List<Error> errors = new();
@@ -74,31 +83,54 @@ public class Bug{
                 collaborators,
                 startDateTime,
                 endDateTime,
-                DateTime.UtcNow
+                lastModified ?? DateTime.UtcNow,
+                status,
+                linkedbugs
             );
         }
 
         public static ErrorOr<Bug> From(CreateBugRequest request){
-            return Create(            
-            request.Name,
-            request.Description,
-            request.Creator,
-            request.Collaborators,
-            request.StartDateTime,
-            request.EndDateTime);
-            
-        }
-        public static ErrorOr<Bug> From(Guid id, UpsertBugRequest request){
-            return Create(            
+            return Create(
             request.Name,
             request.Description,
             request.Creator,
             request.Collaborators,
             request.StartDateTime,
             request.EndDateTime,
+            request.Status,
+            request.Linkedbugs);
+            
+        }
+
+        public static ErrorOr<Bug> From(Guid id, UpsertBugRequest request){
+            return Create(
+            request.Name,
+            request.Description,
+            request.Creator,
+            request.Collaborators,
+            request.StartDateTime,
+            request.EndDateTime,
+            request.Status,
+            request.Linkedbugs,
+            request.LastModified,
             id);
             
         }
+
+        // public static ErrorOr<Bug> From(DateTime lastModifiedDateTime, Guid id, UpsertBugRequest request){
+        //     return Create(
+        //     request.Name,
+        //     request.Description,
+        //     request.Creator,
+        //     request.Collaborators,
+        //     request.StartDateTime,
+        //     request.EndDateTime,
+        //     request.Status,
+        //     request.Linkedbugs,
+        //     lastModifiedDateTime,
+        //     id);
+            
+        // }
 
 
 };

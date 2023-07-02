@@ -8,5 +8,7 @@ public record BugResponse(
     List<string> Collaborators,
     DateTime StartDateTime,
     DateTime EndDateTime,
-    DateTime LastModified
+    DateTime LastModified,
+    int Status,
+    List<Guid> Linkedbugs
 );

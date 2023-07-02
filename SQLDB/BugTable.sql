@@ -7,5 +7,6 @@ CREATE TABLE Bug (
     startDateTime datetime NOT NULL,
     endDateTime datetime,
     lastModified datetime,																																									
-    status INT NOT NULL
+    status INT NOT NULL,
+    linkedbugs TEXT NOT NULL
 );

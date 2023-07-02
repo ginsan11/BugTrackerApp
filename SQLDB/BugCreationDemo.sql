@@ -1,2 +1,2 @@
-INSERT INTO Bug (id, name, description, creator, collaborators, startDateTime, endDateTime, lastModified, status)
-VALUES ('6b5ebd61-9014-4e20-bb8e-244e1b7420cd', 'Ruuuuuuuuuuuuuun', 'Teeeeeeeeeeeeeeest', 'Me', 'Jonathan, Ali, star, Salad', '2022-04-08T08:00:00', '2022-04-08T11:00:00', '2023-06-30T08:45:39', 0);
+INSERT INTO Bug (id, name, description, creator, collaborators, startDateTime, endDateTime, lastModified, status, linkedbugs)
+VALUES ('6b5ebd61-9014-4e20-bb8e-244e1b7420cd', 'Ruuuuuuuuuuuuuun', 'Teeeeeeeeeeeeeeest', 'Me', 'Jonathan, Ali, star, Salad', '2022-04-08T08:00:00', '2022-04-08T11:00:00', '2023-06-30T08:45:39', 0, '724ea190-aa5e-43d3-b8e2-bc607fa92402, 93fe17e3-9a03-4bcc-a22c-694e786f2c41, 365ca1c5-3c5f-405b-9c10-778baec379ee');

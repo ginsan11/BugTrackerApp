@@ -1,3 +1,3 @@
-@id=a98f45a9-7ab2-4440-b282-ab87878c44d0
+@id=6b5ebd61-9014-4e20-bb8e-244e1b7420cd
 
-GET http://localhost:80/bug/{{id}}
+GET http://localhost:5157/bug/{{id}}
