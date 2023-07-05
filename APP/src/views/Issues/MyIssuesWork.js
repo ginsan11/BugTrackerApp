@@ -1,55 +1,79 @@
-import React from 'react'
-import { CCard, CCardHeader, CCardBody, CCardTitle, CCardText} from '@coreui/react';
+import React from 'react';
+import { CCard, CCardHeader } from '@coreui/react';
+import PropTypes from 'prop-types';
+import { DataGrid } from '@mui/x-data-grid';
 
+const MyIssuesWork = ({ parsedBugs, header }) => {
+  const bugTickets = parsedBugs.map((bug) => ({
+    id: bug.id,
+    name: bug.name,
+    status: bug.status,
+    startDateTime: bug.startDateTime,
+    endDateTime: bug.endDateTime,
+    lastmodified: bug.lastmodified,
+    creator : bug.creator,
+    collaborators : bug.collaborators,
+    tags : bug.tags,
+    severity : bug.severity,
+  }));
 
+  if (bugTickets.length === 0) {
+    bugTickets.push({
+      id: 0,
+      name: 'No bugs found',
+      status: '',
+      startDateTime: '',
+      lastmodified: '',
+      creator : '',
+      collaborators : '',
+      tags : '',
+      severity : '',
+    });
+  }
 
-const MyIssuesWork = () => {
+  const columns = [
+    { field: 'id', headerName: 'ID', width: 140 },
+    { field: 'name', headerName: 'Name', width: 180 },
+    { field: 'status', headerName: 'Status', width: 80 },
+    { field: 'startDateTime', headerName: 'Start Date', width: 140 },
+    { field: 'lastmodified', headerName: 'Last Modified', width: 140 },
+    { field: 'creator', headerName: 'Creator', width: 100 },
+    { field: 'collaborators', headerName: 'Collaborators', width: 220 },
+    { field: 'tags', headerName: 'Tags', width: 220 },
+    { field: 'severity', headerName: 'Severity', width: 50 },
+  ];
 
-    const array = [
+  return (
+    <CCard className='rounded-5' style={{ height: '40%', width: '95%' }}>
+      <CCardHeader>{header}</CCardHeader>
+      <div className='overflow-auto align-items-center flex-column'>
+        <div className='d-flex justify-content-evenly text-center'>
+          <div className='w-100 h-100'>
+            <DataGrid
+              className='rounded-5'
+              rows={bugTickets}
+              columns={columns}
+              pagination
+              pageSize={5}
+            />
+          </div>
+        </div>
+      </div>
+    </CCard>
+  );
+};
 
-        { color: 'light', textColor: 'black' },
-        { color: 'light', textColor: 'black' },
-        { color: 'light', textColor: 'black' },
-        { color: 'light', textColor: 'black' },
-        { color: 'light', textColor: 'black' },
-        { color: 'light', textColor: 'black' },
-        { color: 'light', textColor: 'black' },
-        { color: 'light', textColor: 'black' },
-    ]
+MyIssuesWork.propTypes = {
+  parsedBugs: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      status: PropTypes.string.isRequired,
+      startDateTime: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  header: PropTypes.string.isRequired,
+};
 
-    return (
-        <CCard  className='' style={{height: 600, width: 600}}>
-            <CCardHeader >My Open Bugs</CCardHeader>
-            <div className=' overflow-auto  align-items-center flex-column'>
-            <>
-                {array.map((item, index) => (
-                    <CCard
-                        color={item.color}
-                        textColor={item.textColor}
-                        className="mb-3 "
-                        style={{ maxWidth: '38rem', maxLength: '30rem' }}
-                        key={index}
-                    >
-                        <div className=' row row-cols-3 text-center'>
-                            <CCardHeader >Name</CCardHeader>
-                            <CCardHeader >Status</CCardHeader>
-                            <CCardHeader >Created</CCardHeader>
-                        </div>
-                        <CCardBody className=' row row-cols-3 text-center '>
-                            <CCardTitle >{item.color} card title</CCardTitle>
-                            <CCardText >
-                                Open
-                            </CCardText>
-                            <CCardText >
-                                June 12th 2021
-                            </CCardText>
-                        </CCardBody>
-                    </CCard>
-                ))}
-            </>
-            </div>
-        </CCard >
-    )
-}
-
-export default MyIssuesWork
+export default MyIssuesWork;
+   

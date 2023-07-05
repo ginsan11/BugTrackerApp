@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\BugTrackerApp\\api\\BugTracker.Contracts\\BugTracker.Contracts.csproj": {}
+    "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\BugTrackerApp\\API\\BugTracker.Contracts\\BugTracker.Contracts.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\BugTrackerApp\\api\\BugTracker.Contracts\\BugTracker.Contracts.csproj": {
+    "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\BugTrackerApp\\API\\BugTracker.Contracts\\BugTracker.Contracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\BugTrackerApp\\api\\BugTracker.Contracts\\BugTracker.Contracts.csproj",
+        "projectUniqueName": "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\BugTrackerApp\\API\\BugTracker.Contracts\\BugTracker.Contracts.csproj",
         "projectName": "BugTracker.Contracts",
-        "projectPath": "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\BugTrackerApp\\api\\BugTracker.Contracts\\BugTracker.Contracts.csproj",
+        "projectPath": "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\BugTrackerApp\\API\\BugTracker.Contracts\\BugTracker.Contracts.csproj",
         "packagesPath": "C:\\Users\\Dummy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\BugTrackerApp\\api\\BugTracker.Contracts\\obj\\",
+        "outputPath": "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\BugTrackerApp\\API\\BugTracker.Contracts\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Dummy\\AppData\\Roaming\\NuGet\\NuGet.Config"

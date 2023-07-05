@@ -10,5 +10,7 @@ public record BugResponse(
     DateTime EndDateTime,
     DateTime LastModified,
     int Status,
-    List<Guid> Linkedbugs
+    List<Guid> Linkedbugs,
+    List<String> Tags,
+    int Severity
 );

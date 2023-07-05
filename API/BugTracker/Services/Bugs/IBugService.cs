@@ -11,6 +11,8 @@ public interface IBugService
 
     ErrorOr<List<Bug>> GetMyBugs(String myname);
 
+    ErrorOr<List<Bug>> GetAllBugs();
+
     ErrorOr<UpsertedBug> UpsertBug(Bug bug);
     
     ErrorOr<Deleted> DeletetBug(Guid id);

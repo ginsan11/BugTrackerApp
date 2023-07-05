@@ -4,11 +4,25 @@ import { CCard, CCardBody, CCardHeader, CCardFooter, CCardText, CCardTitle, CBut
 import { CChart } from '@coreui/react-chartjs';
 
 
-function MyIssuesChart({completedTasks, lastYearTasks}) {
+function MyIssuesChart({completedTasks, lastYearTasks, parsedBugs, name}) {
 
     const progress = (completedTasks / lastYearTasks) * 100; 
 
-    console.log(progress);
+    const filteredBugsClosed = parsedBugs.filter(bug => bug.status === 'closed');
+
+    const bugsClosed = Array.from({ length: 12 }, () => 0);
+
+    filteredBugsClosed.forEach(bug => {
+      const month = new Date(bug.endDateTime).getMonth();
+      bugsClosed[month]++;
+    });
+
+    const filteredBugsOpened = parsedBugs.filter(bug => bug.status === 'open' && bug.creator.toLowerCase() === name.toLowerCase());
+    const bugsOpened = Array.from({ length: 12 }, () => 0);
+    filteredBugsOpened.forEach(bug => {
+        const month = new Date(bug.startDateTime).getMonth();
+        bugsOpened[month]++;
+      });
 
   return (
     <div className="container mb-5">
@@ -28,15 +42,7 @@ function MyIssuesChart({completedTasks, lastYearTasks}) {
                                         borderColor: "rgba(220, 220, 220, 1)",
                                         pointBackgroundColor: "rgba(220, 220, 220, 1)",
                                         pointBorderColor: "#fff",
-                                        data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
-                                    },
-                                    {
-                                        label: "Bugs Fixed",
-                                        backgroundColor: "rgba(151, 187, 205, 0.2)",
-                                        borderColor: "rgba(151, 187, 205, 1)",
-                                        pointBackgroundColor: "rgba(151, 187, 205, 1)",
-                                        pointBorderColor: "#fff",
-                                        data: [50, 12, 28, 29, 7, 25, 12, 70, 60, 30, 20, 10]
+                                        data: bugsOpened
                                     },
                                     {
                                         label: "Bugs Closed",
@@ -44,36 +50,29 @@ function MyIssuesChart({completedTasks, lastYearTasks}) {
                                         borderColor: "rgba(8, 55, 102, 65)",
                                         pointBackgroundColor: "rgba(151, 187, 205, 1)",
                                         pointBorderColor: "#fff",
-                                        data: [20, 9, 3, 5, 2, 3, 1, 7, 6, 3, 2, 1]
+                                        data: bugsClosed
                                     },
                                 ],
                             }}
                     />
                 </CCardBody>
-                <CCardFooter >
-                    <div className="d-flex text-center my-3">
-                        <div className='px-2 text-medium-emphasis'>
-                            Track to passing last month:
-                        </div>
-                        <strong>
-                            {completedTasks}
-                            &nbsp; Tasks Completed
-                        </strong>
-                        <div className="p-2 flex-grow-1">
-                            <CProgress className="mb-1">
-                                <CProgressBar value={progress}>{progress}%</CProgressBar>
-                            </CProgress>
-                        </div>
-                    </div>
-                </CCardFooter>
             </CCard>
         </div>
   )
 }
 
 MyIssuesChart.propTypes = {
+    parsedBugs: PropTypes.arrayOf(
+        PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          status: PropTypes.string.isRequired,
+          startDateTime: PropTypes.string.isRequired,
+          // Add other necessary prop validations for each bug object
+        })
+      ).isRequired,
     completedTasks: PropTypes.number.isRequired,
     lastYearTasks: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
   };
 
 export default MyIssuesChart

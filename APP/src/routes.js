@@ -52,6 +52,9 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
 const AllIssues = React.lazy(() => import('./views/Issues/AllIssues'))
 const MyIssues = React.lazy(() => import('./views/Issues/MyIssues'))
+const BugView = React.lazy(() => import('./views/bug/BugView'))
+const CreateBug = React.lazy(() => import('./views/Issues/CreateBug'))
+
 
 //const MyIssues = React.lazy(() => import('./views/Issues/MyIssues'))
 
@@ -104,6 +107,9 @@ const routes = [
   { path: '/widgets', name: 'Widgets', element: Widgets },
   { path: '/Issues/AllIssues', name: 'Issues', element: AllIssues },
   { path: '/Issues/MyIssues', name: 'Issues', element: MyIssues },
+  { path: '/bug/:bugId', name: 'BugView', element: BugView },
+  { path: '/Issues/CreateBug', name: 'CreateBug', element: CreateBug },
+  
 
 ]
 

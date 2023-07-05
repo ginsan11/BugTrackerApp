@@ -23,6 +23,10 @@ public class Bug{
     public DateTime LastModified { get; }
     public int Status { get; }
     public List<Guid> Linkedbugs { get; }
+    public List<String> Tags { get; }
+    public int Severity { get; }
+
+
 
     private Bug(
         Guid id,
@@ -34,7 +38,9 @@ public class Bug{
         DateTime endDateTime, 
         DateTime lastModified,
         int status,
-        List<Guid> linkedbugs){
+        List<Guid> linkedbugs,
+        List<String> tags,
+        int severity){
 
         Id = id;
         Name = name;
@@ -46,6 +52,8 @@ public class Bug{
         LastModified = lastModified;
         Status = status;
         Linkedbugs = linkedbugs;
+        Tags = tags;
+        Severity = severity;
     }
 
     public static ErrorOr<Bug> Create(
@@ -57,6 +65,8 @@ public class Bug{
         DateTime endDateTime,
         int status,
         List<Guid> linkedbugs,
+        List<String> tags,
+        int severity,
         DateTime ? lastModified = null,
         Guid ? id = null){
 
@@ -75,6 +85,7 @@ public class Bug{
             if(errors.Count > 0){
                 return errors;
             }
+            collaborators.Add(creator);
             return new Bug(
                 id ?? Guid.NewGuid(),
                 name,
@@ -85,7 +96,9 @@ public class Bug{
                 endDateTime,
                 lastModified ?? DateTime.UtcNow,
                 status,
-                linkedbugs
+                linkedbugs,
+                tags,
+                severity
             );
         }
 
@@ -98,7 +111,9 @@ public class Bug{
             request.StartDateTime,
             request.EndDateTime,
             request.Status,
-            request.Linkedbugs);
+            request.Linkedbugs,
+            request.Tags,
+            request.Severity);
             
         }
 
@@ -112,6 +127,8 @@ public class Bug{
             request.EndDateTime,
             request.Status,
             request.Linkedbugs,
+            request.Tags,
+            request.Severity,
             request.LastModified,
             id);
             

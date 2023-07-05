@@ -42,7 +42,9 @@ public class BugController : ApiController{
             bug.EndDateTime,
             bug.LastModified,
             bug.Status,
-            bug.Linkedbugs
+            bug.Linkedbugs,
+            bug.Tags,
+            bug.Severity
         );
     }
 
@@ -146,6 +148,48 @@ public class BugController : ApiController{
         return Ok(bugResponses);
     }
 
+[HttpGet("allbugs")]
+/// <summary>
+/// Retrieves All the Bugs in the database.
+/// </summary>
+/// <returns>Retrieves all the Bugs in the database.</returns>
+public IActionResult GetAllBugs()
+{
+    // Get all bugs from the Bug table
+    ErrorOr<List<Bug>> getAllBugsResult = _bugService.GetAllBugs();
+
+    if (getAllBugsResult.IsError)
+    {
+        // Return an error response if there was an issue retrieving the bugs
+        return Problem(getAllBugsResult.Errors);
+    }
+
+    List<Bug> bugs = getAllBugsResult.Value;
+
+    // Create a list of BugResponses to return all the valid bugs
+    List<BugResponse> bugResponses = new List<BugResponse>();
+
+    foreach (Bug bug in bugs)
+    {
+        // Convert the Bug to a BugResponse
+        ErrorOr<BugResponse> bugResponseResult = MapBugResponse(bug);
+
+        if (bugResponseResult.IsError)
+        {
+            // Return an error response if there was an issue mapping the Bug to BugResponse
+            return Problem(bugResponseResult.Errors);
+        }
+
+        BugResponse bugResponse = bugResponseResult.Value;
+
+        // Add the BugResponse to the list of BugResponses
+        bugResponses.Add(bugResponse);
+    }
+
+    return Ok(bugResponses);
+}
+
+
     [HttpPut("{id:guid}")]
     /// <summary>
     /// Upserts a Bug with the specified ID and request data.
@@ -168,7 +212,6 @@ public class BugController : ApiController{
         // Upsert the Bug and return the response
         ErrorOr<UpsertedBug> upsertBugResult = _bugService.UpsertBug(bug);
 
-        // TODO: Retunr 201 if a new Bug created
 
         return upsertBugResult.Match(
             upserted => upserted.IsNewlyCreated ? CreatedAtGetBug(bug) : NoContent(), //was this newly created? if not NoContent

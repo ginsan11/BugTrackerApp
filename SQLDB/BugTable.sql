@@ -6,7 +6,9 @@ CREATE TABLE Bug (
     collaborators TEXT,
     startDateTime datetime NOT NULL,
     endDateTime datetime,
-    lastModified datetime,																																									
+    lastModified datetime,
     status INT NOT NULL,
-    linkedbugs TEXT NOT NULL
+    linkedbugs TEXT NOT NULL,
+    tags TEXT NOT NULL,
+    severity INT NOT NULL
 );

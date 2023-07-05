@@ -63,8 +63,8 @@ public class BugService : IBugService{
                     if (reader.Read())
                     {
                         List<string> collaborators = ConvertTXTToStringList(reader.GetString(reader.GetOrdinal("collaborators")));
-                        List<Guid> guidList2 = ConvertTXTToGuidList(reader.GetString(reader.GetOrdinal("linkedbugs")));
-                        List<Guid> guidList = new List<Guid>();
+                        List<string> tags = ConvertTXTToStringList(reader.GetString(reader.GetOrdinal("tags")));
+                        List<Guid> linkedBugs = ConvertTXTToGuidList(reader.GetString(reader.GetOrdinal("linkedbugs")));
                         // Extract the bug data from the reader
                         ErrorOr<Bug> bug = Bug.Create(  
                             reader.GetString(reader.GetOrdinal("name")),
@@ -74,9 +74,12 @@ public class BugService : IBugService{
                             reader.GetDateTime(reader.GetOrdinal("startDateTime")),
                             reader.GetDateTime(reader.GetOrdinal("endDateTime")),
                             reader.GetInt32(reader.GetOrdinal("status")),
-                            guidList2,
+                            linkedBugs,
+                            tags,
+                            reader.GetInt32(reader.GetOrdinal("severity")),
                             reader.GetDateTime(reader.GetOrdinal("lastModified")),
                             Guid.Parse(reader.GetString(reader.GetOrdinal("id")))
+
                         );
                         connection.Close();
                         return bug;
@@ -108,7 +111,9 @@ public ErrorOr<List<Bug>> GetMyBugs(String myname)
                 while (reader.Read())
                 {
                     List<string> collaborators = ConvertTXTToStringList(reader.GetString(reader.GetOrdinal("collaborators")));
-                    List<Guid> guidList = ConvertTXTToGuidList(reader.GetString(reader.GetOrdinal("linkedbugs")));
+                    List<string> tags = ConvertTXTToStringList(reader.GetString(reader.GetOrdinal("tags")));
+
+                    List<Guid> linkedBugs = ConvertTXTToGuidList(reader.GetString(reader.GetOrdinal("linkedbugs")));
                     // Extract the bug data from the reader
                     ErrorOr<Bug> bug = Bug.Create(
                         reader.GetString(reader.GetOrdinal("name")),
@@ -118,7 +123,9 @@ public ErrorOr<List<Bug>> GetMyBugs(String myname)
                         reader.GetDateTime(reader.GetOrdinal("startDateTime")),
                         reader.GetDateTime(reader.GetOrdinal("endDateTime")),
                         reader.GetInt32(reader.GetOrdinal("status")),
-                        guidList,
+                        linkedBugs,
+                        tags,
+                        reader.GetInt32(reader.GetOrdinal("severity")),
                         reader.GetDateTime(reader.GetOrdinal("lastModified")),
                         Guid.Parse(reader.GetString(reader.GetOrdinal("id")))
                     );
@@ -142,6 +149,68 @@ public ErrorOr<List<Bug>> GetMyBugs(String myname)
         }
     }
 }
+
+/// <summary>
+/// Retrieves all bugs from the Bug table.
+/// </summary>
+/// <returns>A list of bugs if successful, otherwise an error.</returns>
+public ErrorOr<List<Bug>> GetAllBugs()
+{
+    using (SqlConnection connection = new SqlConnection(connectionString))
+    {
+        connection.Open();
+        
+        // Construct the SQL query to select all bugs
+        string query = "SELECT * FROM Bug";
+        
+        using (SqlCommand command = new SqlCommand(query, connection))
+        {
+            // Execute the query and retrieve the bug data
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                List<Bug> bugs = new List<Bug>();
+
+                while (reader.Read())
+                {
+                    // Extract the collaborator and linked bug data from the reader
+                    List<string> collaborators = ConvertTXTToStringList(reader.GetString(reader.GetOrdinal("collaborators")));
+                    List<Guid> linkedBugs = ConvertTXTToGuidList(reader.GetString(reader.GetOrdinal("linkedbugs")));
+                    List<string> tags = ConvertTXTToStringList(reader.GetString(reader.GetOrdinal("tags")));
+
+                    
+                    // Extract the bug data from the reader
+                    ErrorOr<Bug> bug = Bug.Create(
+                        reader.GetString(reader.GetOrdinal("name")),
+                        reader.GetString(reader.GetOrdinal("description")),
+                        reader.GetString(reader.GetOrdinal("creator")),
+                        collaborators,
+                        reader.GetDateTime(reader.GetOrdinal("startDateTime")),
+                        reader.GetDateTime(reader.GetOrdinal("endDateTime")),
+                        reader.GetInt32(reader.GetOrdinal("status")),
+                        linkedBugs,
+                        tags,
+                        reader.GetInt32(reader.GetOrdinal("severity")),
+                        reader.GetDateTime(reader.GetOrdinal("lastModified")),
+                        Guid.Parse(reader.GetString(reader.GetOrdinal("id")))
+                    );
+
+                    if (!bug.IsError)
+                    {
+                        bugs.Add(bug.Value);
+                    }
+                    else
+                    {
+                        // Handle the error if necessary
+                    }
+                }
+
+                connection.Close();
+                return bugs;
+            }
+        }
+    }
+}
+
 
     public ErrorOr<UpsertedBug> UpsertBug(Bug bug){
         var IsNewlyCreated = !bugdict.ContainsKey(bug.Id); //if the bug dict doesnt contain the id then create a new one

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "N1jZS6NqXzB/MUcfN03/kJIpJIwChLeifg+tCfdMgCkLVwDsEAxc8nfGrmhvm953ofsuMc82DLmR9hb7jJFiAw==",
+  "dgSpecHash": "vM8MKKvzUZc+7bGY7yQz4Py4XXsxhqCGNurlMdDwHuF3Mnpx6NyZjdiqHMIcLnopbP8J/x+8htWF/UpBlIA2Mg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\BugTrackerApp\\api\\bugtracker\\BugTracker.csproj",
+  "projectFilePath": "C:\\Users\\Dummy\\Documents\\Github\\BugTrackerProjectv1\\BugTrackerApp\\API\\bugtracker\\BugTracker.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dummy\\.nuget\\packages\\erroror\\1.2.1\\erroror.1.2.1.nupkg.sha512",
     "C:\\Users\\Dummy\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",

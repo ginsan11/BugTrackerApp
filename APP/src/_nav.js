@@ -19,31 +19,14 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Dashboard',
-    to: '/dashboard',
+    to: '/Issues/MyIssues',
     icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
   },
   {
-    component: CNavGroup,
-    name: 'Issues',
-    to: '/base',
+    component: CNavItem,
+    name: 'All Issues',
+    to: '/Issues/AllIssues',
     icon: <CIcon icon={cilPuzzle} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'My Issues',
-        to: '/Issues/MyIssues',
-      },
-      {
-        component: CNavItem,
-        name: 'All Issues',
-        to: '/Issues/AllIssues',
-      },
-      {
-        component: CNavItem,
-        name: 'Report',
-        to: '/Issues/Report',
-      },
-    ],
   },
   {
     component: CNavItem,
