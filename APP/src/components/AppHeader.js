@@ -37,7 +37,7 @@ const AppHeader = () => {
         </CHeaderBrand>
         <CHeaderNav className="d-none d-md-flex me-auto">
           <CNavItem>
-            <CButton color="primary" size="sm" href=''>Create ticket</CButton>
+            <CButton color="primary" size="sm" href='/Issues/CreateBug'>Create ticket</CButton>
 
           </CNavItem> 
         </CHeaderNav>

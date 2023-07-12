@@ -31,7 +31,7 @@ const _nav = [
   {
     component: CNavItem,
     name: 'BackLog',
-    to: '/charts',
+    to: '/Issues/CreateBug',
     icon: <CIcon icon={cilChartPie} customClassName="nav-icon" />,
   },
   {
