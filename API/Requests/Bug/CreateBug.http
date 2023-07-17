@@ -1,4 +1,4 @@
-POST http://localhost:5157/bug
+POST http://localhost:80/bug/createbug
 Content-Type: application/json
 
 {
@@ -11,8 +11,8 @@ Content-Type: application/json
         "Tim",
         "Jonathan"
     ],
-    "startDateTime": "2022-04-08T08:00:00",
-    "endDateTime": "2022-04-01T11:00:00",
+    "startDateTime": "1992-12-03T13:18:00",
+    "endDateTime": "1998-01-09T16:31:00",
     "status": 0,
     "LinkedBugs": [
     ],

@@ -58,13 +58,16 @@ public class BugController : ApiController{
             value: MapBugResponse(bug));
     }
 
-    [HttpPost("")]
+    [HttpPost("createbug")]
     /// <summary>
     /// Creates a new Bug.
     /// </summary>
     /// <param name="request">The request object containing Bug data.</param>
     /// <returns>The created Bug.</returns>
     public IActionResult CreateBug(CreateBugRequest request){
+
+        Console.WriteLine("CreateBugRequest: " + request);
+
         // Convert the request to a Bug object
         ErrorOr<Bug> requestToBugResult = Bug.From(request);
 
@@ -94,6 +97,8 @@ public class BugController : ApiController{
     /// <returns>The Bug with the specified ID.</returns>
     public IActionResult GetBug(Guid id){
 
+        Console.WriteLine("Bing!: ");
+
         // Get the Bug by its ID
         ErrorOr<Bug> getBugResult = _bugService.GetBug(id);
 
@@ -112,6 +117,9 @@ public class BugController : ApiController{
     /// <param name="myname">The name to retrieve Bugs for.</param>
     /// <returns>The Bugs associated with the specified name.</returns>
     public IActionResult GetMyBugs(String myname){
+
+    Console.WriteLine("Bing2!: ");
+
 
         // Get the List of Bugs by its user name
         ErrorOr<List<Bug>> getMyBugResult = _bugService.GetMyBugs(myname);
@@ -155,6 +163,8 @@ public class BugController : ApiController{
 /// <returns>Retrieves all the Bugs in the database.</returns>
 public IActionResult GetAllBugs()
 {
+    Console.WriteLine("Bing3!: ");
+
     // Get all bugs from the Bug table
     ErrorOr<List<Bug>> getAllBugsResult = _bugService.GetAllBugs();
 
